@@ -2,7 +2,15 @@ const { Client, GatewayIntentBits} = require('discord.js');
 require('dotenv/config');
 
 const client = new Client({
-	intents: 131071 
+	presence : { 
+        status: 'online',
+        afk: false,
+        activities: [{
+            name: 'in the fiery pits',
+        }],
+    },
+	intents: 131071,
+	partials: ['CHANNEL', 'GUILD_MEMBER','GUILD_MESSAGES','DIRECT_MESSAGES', 'GUILD_SCHEDULED_EVENT', 'MESSAGE', 'REACTION', 'USER']
 });
 
 client.on('ready', () =>{
@@ -10,7 +18,6 @@ client.on('ready', () =>{
 });
 
 client.on('messageCreate', (msg) =>{
-    
     if(msg.content.toLowerCase() === 'hello')
     	msg.channel.send('hello there')
 });
